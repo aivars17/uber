@@ -37,6 +37,11 @@ class Car
      */
     private $drivers;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Trip", mappedBy="cars")
+     */
+    private $trip;
+
     public function __construct()
     {
         $this->drivers = new ArrayCollection();
@@ -100,7 +105,17 @@ class Car
      */
     public function getDriver()
     {
-        return $this->driver;
+        return $this->drivers;
+    }
+
+    public function addDriver(Driver $driver)
+    {
+        if(!$this->drivers->contains($driver))
+        {
+            $this->drivers[] = $driver;
+            $driver->addCar($this);
+        }
+        return $this;
     }
 
     public function removeDriver(Driver $driver)
@@ -110,5 +125,53 @@ class Car
         }
         $this->driver->removeElement($driver);
         $driver->removeCar($this);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTrip()
+    {
+        return $this->trip;
+    }
+
+    /**
+     * @param mixed $trip
+     */
+    public function setTrip($trip): void
+    {
+        $this->trip = $trip;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTrips()
+    {
+        return $this->trips;
+    }
+
+    /**
+     * @param mixed $trips
+     */
+    public function setTrips($trips): void
+    {
+        $this->trips = $trips;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDrivers()
+    {
+        return $this->drivers;
+    }
+
+    /**
+     * @param mixed $drivers
+     */
+    public function setDrivers($drivers): void
+    {
+        $this->drivers = $drivers;
     }
 }

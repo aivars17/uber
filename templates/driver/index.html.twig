@@ -1,39 +1,70 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Driver index{% endblock %}
+{% block title %}Our company drivers{% endblock %}
 
 {% block body %}
-    <h1>Driver index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>License</th>
-                <th>Age</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for driver in drivers %}
-            <tr>
-                <td>{{ driver.id }}</td>
-                <td>{{ driver.name }}</td>
-                <td>{{ driver.license }}</td>
-                <td>{{ driver.age }}</td>
-                <td>
-                    <a href="{{ path('driver_show', {'id': driver.id}) }}">show</a>
-                    <a href="{{ path('driver_edit', {'id': driver.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('driver_new') }}">Create new</a>
+    <div class="container">
+        <div class="col">
+            <div class="row">
+                <h1>Driver index</h1>
+            </div>
+            <div class="row">
+                <a class="btn btn-warning" href="{{ path('driver_new') }}">Create new</a>
+            </div>
+            <br>
+            <div class="row">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>License</th>
+                                <th>Age</th>
+                                <th>Car make</th>
+                                <th>Car model</th>
+                                <th>actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for driver in drivers %}
+                            <tr>
+                                <td>{{ driver.id }}</td>
+                                <td>{{ driver.name }}</td>
+                                <td>{{ driver.license }}</td>
+                                <td>{{ driver.age }}</td>
+                                <td>
+                                    {% for car in driver.cars %}
+                                        {{ car.make }}
+                                        <hr>
+                                    {% endfor %}
+                                </td>
+                                <td>
+                                    {% for car in driver.cars %}
+                                        {{ car.model }}
+                                        <hr>
+                                    {% endfor %}
+                                </td>
+                                <td>
+                                    <a href="{{ path('driver_show', {'id': driver.id}) }}">show</a>
+                                    <a href="{{ path('driver_edit', {'id': driver.id}) }}">edit</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="5">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+            </div>
+            <ul>
+                {% for page in 1..pages %}
+                    <a href="{{ path('driver_index', {'page': page}) }}">{{ page }}</a>
+                {% endfor %}
+            </ul>
+            <div class="row">
+                <a class="btn btn-warning" href="{{ path('driver_new') }}">Create new</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}

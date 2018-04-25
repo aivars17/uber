@@ -1,4 +1,30 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <div class="form-group">
+        <div class="form-control">
+            {{ form_label(form.duration) }}
+            {{ form_widget(form.duration, {attr:{'class': 'form-control'}}) }}
+        </div>
+
+        <div class="form-control">
+        {{ form_label(form.length) }}
+        {{ form_widget(form.length, {attr:{'class': 'form-control'}}) }}
+        </div>
+        <div class="form-control">
+            {{ form_label(form.cost) }}
+            {{ form_widget(form.cost, {attr:{'class': 'form-control'}}) }}
+        </div>
+        <div class="form-control">
+            {{ form_label(form.client) }}
+            {{ form_widget(form.client, {attr:{'class': 'form-control'}}) }}
+        </div>
+    <div class="form-control">
+        {{ form_label(form.driver) }}
+        {{ form_widget(form.driver, {attr:{'class': 'form-control'}}) }}
+    </div>
+    <div class="form-control">
+        {{ form_label(form.car) }}
+        {{ form_widget(form.car, {attr:{'class': 'form-control'}}) }}
+    </div>
+        {{ form_widget(form.save, {attr:{'class': 'btn btn-primary'}}) }}
+    </div>
 {{ form_end(form) }}

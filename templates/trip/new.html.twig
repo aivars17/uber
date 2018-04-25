@@ -3,9 +3,47 @@
 {% block title %}New Trip{% endblock %}
 
 {% block body %}
-    <h1>Create new Trip</h1>
 
-    {{ include('trip/_form.html.twig') }}
+    <div class="container">
+        <div class="row">
+           <div class="col-md-5">
+                <div class="row">
+                    <div class="col">
+                        <h1>Client</h1>
+                    </div>
+                </div>
+               <div class="row">
+                   <div class="col">
 
-    <a href="{{ path('trip_index') }}">back to list</a>
+                   </div>
+               </div>
+               <input id="origin-input" class="controls" type="text"
+                      placeholder="Enter an origin location">
+               <input id="destination-input" class="controls" type="text"
+                      placeholder="Enter a destination location">
+               <div id="map"></div>
+           </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col">
+                        <h1>Create new Trip</h1>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        {{ include('trip/_form.html.twig') }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col">
+                        <h1>Driver</h1>
+                    </div>
+                </div>
+           </div>
+        </div>
+        <a href="{{ path('trip_index') }}">back to list</a>
+    </div>
 {% endblock %}

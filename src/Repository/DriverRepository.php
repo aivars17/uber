@@ -19,6 +19,17 @@ class DriverRepository extends ServiceEntityRepository
         parent::__construct($registry, Driver::class);
     }
 
+    public function paginateAll($page, $perPage = 5)
+    {
+
+        $from = ($page - 1) * $perPage;
+        $query = $this->createQueryBuilder('driver')
+            ->setFirstResult($from)
+            ->setMaxResults($perPage)
+            ->getQuery();
+        return $query->getResult();
+    }
+
 //    /**
 //     * @return Driver[] Returns an array of Driver objects
 //     */

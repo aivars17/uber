@@ -28,13 +28,13 @@ class Clients
     private $gender;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Trip",  mappedBy="client"))
+     * @ORM\OneToMany(targetEntity="App\Entity\Trip",  mappedBy="client")
      */
     private $trips;
 
     public function __construct()
     {
-        $this->trips = new ArrayCollection();
+
     }
 
     public function getId()

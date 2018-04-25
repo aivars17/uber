@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,6 +36,20 @@ class Trip
      * @ORM\ManyToOne(targetEntity="App\Entity\Clients")
      */
     private $client;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Car", inversedBy="trip")
+     */
+    private $car;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Driver")
+     */
+    private $driver;
+
+    public function __construct()
+    {
+    }
 
     public function getId()
     {
@@ -96,4 +111,45 @@ class Trip
     {
         return $this->client;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCar()
+    {
+        return $this->car;
+    }
+
+    /**
+     * @param mixed $car
+     */
+    public function setCar($car): void
+    {
+        $this->car = $car;
+    }
+
+    /**
+     * @param mixed $client
+     */
+    public function setClient($client): void
+    {
+        $this->client = $client;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDriver()
+    {
+        return $this->driver;
+    }
+
+    /**
+     * @param mixed $driver
+     */
+    public function setDriver($driver): void
+    {
+        $this->driver = $driver;
+    }
+
 }

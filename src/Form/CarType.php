@@ -3,6 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Car;
+use App\Entity\Driver;
+use App\Repository\DriverRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -20,6 +23,13 @@ class CarType extends AbstractType
                 'Petrol' => 0,
                 'Diesel' => 1,
                 'Gas' => 2]])
+            ->add('driver', EntityType::class, [
+                'class' => Driver::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+                'by_reference' => false,
+                'required' => false,
+            ])
         ;
     }
 

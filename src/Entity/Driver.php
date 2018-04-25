@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -19,6 +20,7 @@ class Driver
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="Please enter the name")
      */
     private $name;
 
@@ -37,6 +39,18 @@ class Driver
      * @ORM\JoinTable(name="car_driver")
      */
     private $cars;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Trip", mappedBy="driver")
+     */
+    private $driver;
+
+    /**
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="Please, upload your photo")
+     */
+    private $photo;
+
 
     public function __construct()
     {
@@ -105,16 +119,55 @@ class Driver
 
     public function addCar(Car $car)
     {
-        $this->cars->add($car);
+        if(!$this->cars->contains($car))
+        {
+            $this->cars[] = $car;
+            $car->addDriver($this);
+        }
+
+        return $this;
     }
 
     public function removeCar(Car $car)
     {
-        if(!$this->cars->constant($car))
+        if(!$this->cars->contains($this))
         {
            return;
         }
         $this->cars->removeElement($car);
         $car->removeDriver($this);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDriver()
+    {
+        return $this->driver;
+    }
+
+    /**
+     * @param mixed $driver
+     */
+    public function setDriver($driver): void
+    {
+        $this->driver = $driver;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
+     * @param mixed $photo
+     */
+    public function setPhoto($photo): void
+    {
+        $this->photo = $photo;
+
     }
 }

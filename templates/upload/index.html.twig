@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {% endblock %}
+
+{% block body %}
+
+    {{ form_start(form) }}
+    {{ form_end(form) }}
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for file in files %}
+            <tr>
+                <td><img src="{{ asset('uploads/attachments/'~file.file) }}" height="20%" alt="Flowers in Chania"></td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

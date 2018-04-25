@@ -11,6 +11,7 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Gender</th>
+                <th>Trip index</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -20,6 +21,11 @@
                 <td>{{ client.id }}</td>
                 <td>{{ client.name }}</td>
                 <td>{{ client.gender }}</td>
+                <td>
+                    {% for trip in client.trips %}
+                        {{ trip.id }}
+                    {% endfor %}
+                </td>
                 <td>
                     <a href="{{ path('clients_show', {'id': client.id}) }}">show</a>
                     <a href="{{ path('clients_edit', {'id': client.id}) }}">edit</a>

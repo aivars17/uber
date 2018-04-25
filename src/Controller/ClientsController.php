@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * @Route("/clients")
@@ -25,6 +26,7 @@ class ClientsController extends Controller
 
     /**
      * @Route("/new", name="clients_new", methods="GET|POST")
+     *
      */
     public function new(Request $request): Response
     {

@@ -3,9 +3,27 @@
 {% block title %}New Driver{% endblock %}
 
 {% block body %}
-    <h1>Create new Driver</h1>
-
-    {{ include('driver/_form.html.twig') }}
-
-    <a href="{{ path('driver_index') }}">back to list</a>
+    <div class="container">
+        <div class="row driver_box">
+            <div class="col-md-6 col-12 ">
+                <div class="row">
+                    <div class="col">
+                        <h1>Create new Driver</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        {{ include('driver/_form.html.twig') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if errors %}
+        <ul>
+            {% for error in errors %}
+                <li>{{ error.message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
 {% endblock %}

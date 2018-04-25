@@ -1,4 +1,32 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <div class="form-group">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name, {attr: {'class':'form-control'}}) }}
+            {{ form_label(form.license) }}
+            {{ form_widget(form.license, {attr: {'class':'form-control'}}) }}
+            {{ form_label(form.age) }}
+            {{ form_widget(form.age, {attr: {'class':'form-control'}}) }}
+            {{ form_label(form.cars) }}
+            {{ form_widget(form.cars, {attr: {'class':'form-control'}}) }}
+            {{ form_label(form.photo) }}
+            <div class="input-group image-preview">
+                <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                <span class="input-group-btn">
+                        <!-- image-preview-clear button -->
+                        <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                            <span class="glyphicon glyphicon-remove"></span> Clear
+                        </button>
+                    <!-- image-preview-input -->
+                        <div class="btn btn-default image-preview-input">
+                            <span class="glyphicon glyphicon-folder-open"></span>
+                            <span class="image-preview-input-title">Browse</span>
+                            {{ form_widget(form.photo, {attr: {'class':'form-control-file'}}) }}
+                        </div>
+                </span>
+            </div>
+            <br>
+        <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+        <a class="btn btn-danger" href="{{ path('driver_index') }}">back to list</a>
+    </div>
+
 {{ form_end(form) }}

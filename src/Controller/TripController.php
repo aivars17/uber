@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Trip;
 use App\Form\TripType;
+use App\Repository\DriverRepository;
 use App\Repository\TripRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,6 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class TripController extends Controller
 {
+
     /**
      * @Route("/", name="trip_index", methods="GET")
      */
@@ -51,7 +53,9 @@ class TripController extends Controller
      */
     public function show(Trip $trip): Response
     {
-        return $this->render('trip/show.html.twig', ['trip' => $trip]);
+        return $this->render('trip/show.html.twig', [
+            'trip' => $trip
+            ]);
     }
 
     /**
